@@ -17,7 +17,11 @@ update @ 2026/02/04
 
 		- baud rate 415000 : 60.24us
 
-	- UART0 : RLIN30 (TX > P10_10 , RX > P10_09) , for printf and receive from keyboard
+	- UART0 : RLIN30 (TX > P10_10 , RX > P10_09)
+
+        - TX DMA
+
+        - RD with regular interrupt , by using timer irq , for idle detection 
 
 2. before use DMA , need to know
 
@@ -212,7 +216,7 @@ flowchart TD
     B --> C[UART0 Receive 1 byte enable]
     C --> D[UART0 Start]
     D --> E[STATE = RX_INIT]
-    E --> F[Start t2.5 Timer]
+    E --> F[Start t3.5 Timer]
 
     %% UART RX interrupt
     F -->|UART RX IRQ| G[APP_UART0_RX_callback_receiveend]
