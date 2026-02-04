@@ -1,0 +1,378 @@
+<!DOCTYPE html><html><head>
+      <title>README</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css">
+      
+      
+      <script src="https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.min.js"></script>
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="sample_project_rh850_s1_uart_tx_dma_rx_interrupt">Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt </h1>
+<p>Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt</p>
+<p>update @ 2026/02/04</p>
+<ol>
+<li>
+<p>base on EVM : Y-BLDC-SK-RH850F1KM-S1-V2 (R7F701684/LQFP100/1MB flash) , initial below function</p>
+<ul>
+<li>
+<p>project MCU change to R7F7016923 (LQFP64/512K flash)</p>
+</li>
+<li>
+<p>TAUJ0_0 : timer interval for 1ms interrupt</p>
+</li>
+<li>
+<p>UART1 : RLIN31 (TX &gt; P10_12 , RX &gt; P10_11) , for printf and receive from keyboard</p>
+</li>
+<li>
+<p>TAUJ1_0 : timer interval for XXX us interrupt , to detect UART1 RX idle bytes</p>
+<ul>
+<li>
+<p>baud rate 115200 : 217us</p>
+</li>
+<li>
+<p>baud rate 415000 : 60.24us</p>
+</li>
+</ul>
+</li>
+<li>
+<p>UART0 : RLIN30 (TX &gt; P10_10 , RX &gt; P10_09)</p>
+<ul>
+<li>
+<p>TX DMA</p>
+</li>
+<li>
+<p>RD with regular interrupt , by using timer irq , for idle detection</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>before use DMA , need to know</p>
+<ul>
+<li>
+<p>need to set <strong>PEG</strong> register , before DMA to access SRAM normally</p>
+</li>
+<li>
+<p>need to enable PEGSP register, PEGGnMK register, PEGGnBA register , PDMAnDMyiCM register</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/PEG_access.jpg" alt="image"></p>
+<p>about <strong>PEGSP</strong> register</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/PEGSP.jpg" alt="image"></p>
+<p>about <strong>PEGGnMK</strong> register</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/PEGGnMK.jpg" alt="image"></p>
+<p>about <strong>PDMAnDMyiCM</strong> register</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/Identifiers_for_Slave_Guard_RH850_F1KM_S1.jpg" alt="image"></p>
+<p>about <strong>PEGGnBA</strong> register</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/PEGGnBA_1.jpg" alt="image"></p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/PEGGnBA_2.jpg" alt="image"></p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/PEGGnBA_3.jpg" alt="image"></p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code>    PDMA0<span class="token punctuation">.</span>DM00CM <span class="token operator">=</span> _DMAC_PE1_SETTING <span class="token operator">|</span> _DMAC_SPID0_SETTING <span class="token operator">|</span> _DMAC_SUPERVISON_MODE<span class="token punctuation">;</span>    
+    PDMA0<span class="token punctuation">.</span>DM01CM <span class="token operator">=</span> _DMAC_PE1_SETTING <span class="token operator">|</span> _DMAC_SPID0_SETTING <span class="token operator">|</span> _DMAC_SUPERVISON_MODE<span class="token punctuation">;</span>
+    PEG<span class="token punctuation">.</span>SP<span class="token punctuation">.</span>UINT32 <span class="token operator">=</span> <span class="token number">0x00000001U</span><span class="token punctuation">;</span>                <span class="token comment">/* SPEN = 1, permit access */</span>
+    PEG<span class="token punctuation">.</span>G0MK<span class="token punctuation">.</span>UINT32 <span class="token operator">=</span> <span class="token number">0xFFFFF000U</span><span class="token punctuation">;</span>              <span class="token comment">/* 32KB window mask */</span>
+    PEG<span class="token punctuation">.</span>G0BA<span class="token punctuation">.</span>UINT32 <span class="token operator">=</span> ADDR_LOCAL_RAM_CPU1 <span class="token operator">|</span>     <span class="token comment">/* Base address of PE Guard protection Area (start of Local RAM) */</span>
+                    <span class="token punctuation">(</span><span class="token number">0x1U</span><span class="token operator">&lt;&lt;</span><span class="token number">7U</span><span class="token punctuation">)</span> <span class="token operator">|</span>                <span class="token comment">/* Enable Access for SPID 3 */</span>
+                    <span class="token punctuation">(</span><span class="token number">0x1U</span><span class="token operator">&lt;&lt;</span><span class="token number">6U</span><span class="token punctuation">)</span> <span class="token operator">|</span>                <span class="token comment">/* Enable Access for SPID 2 */</span>
+                    <span class="token punctuation">(</span><span class="token number">0x1U</span><span class="token operator">&lt;&lt;</span><span class="token number">5U</span><span class="token punctuation">)</span> <span class="token operator">|</span>                <span class="token comment">/* Enable Access for SPID 1 */</span>
+                    <span class="token punctuation">(</span><span class="token number">0x1U</span><span class="token operator">&lt;&lt;</span><span class="token number">4U</span><span class="token punctuation">)</span> <span class="token operator">|</span>                <span class="token comment">/* Enable Access for SPID 0 */</span>
+                    <span class="token punctuation">(</span><span class="token number">0x1U</span><span class="token operator">&lt;&lt;</span><span class="token number">2U</span><span class="token punctuation">)</span> <span class="token operator">|</span>                <span class="token comment">/* Write access is enabled */</span>
+                    <span class="token punctuation">(</span><span class="token number">0x1U</span><span class="token operator">&lt;&lt;</span><span class="token number">1U</span><span class="token punctuation">)</span> <span class="token operator">|</span>                <span class="token comment">/* Read access is enabled */</span>
+                    <span class="token punctuation">(</span><span class="token number">0x1U</span><span class="token operator">&lt;&lt;</span><span class="token number">0U</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">/* Settings for access enable conditions are enabled */</span>
+
+</code></pre><pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token comment">/* LOCAL_RAM_CPU1 start address (PEG) */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">ADDR_LOCAL_RAM_CPU1</span>         <span class="token expression"><span class="token punctuation">(</span><span class="token number">0xFEBF0000</span><span class="token punctuation">)</span></span></span>
+</code></pre><ol start="3">
+<li>SRAM setting</li>
+</ol>
+<p>memory map (RH850/F1KM-S1)</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/Memory_Map_F1KM_S1.jpg" alt="image"></p>
+<table>
+<thead>
+<tr>
+<th>FLASH</th>
+<th>LOCAL RAM(CPU1)</th>
+<th>RETENTION RAM(CPU1)</th>
+<th>LOCAL RAM(SELF)</th>
+<th>RETENTION RAM(SELF)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>512K</td>
+<td><strong>0xFEBF0000</strong> ~ 0xFEBF7FFF</td>
+<td>0xFEBF8000 ~ 0xFEBFFFFF</td>
+<td><strong>0xFEDF0000</strong> ~ 0xFEDF7FFF</td>
+<td>0xFEDF8000 ~ 0xFEDFFFFF</td>
+</tr>
+<tr>
+<td>768K</td>
+<td><strong>0xFEBE8000</strong> ~ 0xFEBF7FFF</td>
+<td>0xFEBF8000 ~ 0xFEBFFFFF</td>
+<td><strong>0xFEDE8000</strong> ~ 0xFEDF7FFF</td>
+<td>0xFEDF8000 ~ 0xFEDFFFFF</td>
+</tr>
+<tr>
+<td>1MB</td>
+<td><strong>0xFEBE0000</strong> ~ 0xFEBF7FFF</td>
+<td>0xFEBF8000 ~ 0xFEBFFFFF</td>
+<td><strong>0xFEDE0000</strong> ~ 0xFEDF7FFF</td>
+<td>0xFEDF8000 ~ 0xFEDFFFFF</td>
+</tr>
+</tbody>
+</table>
+<p>CPU1 area vs Self area</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/CPU1_area_Self_area_RH850_F1KM_S1.jpg" alt="image"></p>
+<p>DMA access area</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/Address_Space_Viewed_from_Bus_Master_S1_1M_1.jpg" alt="image"></p>
+<p>need to allocate SRAM section : dma_buff <code>0xFEBF0000</code> (FLASH : 512K)</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/cs_link_options_section_settings.jpg" alt="image"></p>
+<p>define TX , RX DMA ram buffer in dma_buf section</p>
+<pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">section dma_buf</span></span>
+<span class="token keyword keyword-volatile">volatile</span> <span class="token class-name">uint8_t</span> s_uart0_dma_rx_ring<span class="token punctuation">[</span>APP_UART0_DMA_RX_RING_SIZE<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-volatile">volatile</span> <span class="token class-name">uint8_t</span> s_uart0_dma_tx_buf<span class="token punctuation">[</span>APP_UART0_DMA_TX_BUF_SIZE<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">pragma</span> <span class="token expression">section <span class="token keyword keyword-default">default</span></span></span>
+</code></pre><p>the DMA ram buffer allocation result in map file</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/map_dma_tx_rx_buffer_addr.jpg" alt="image"></p>
+<p>UART DMA TX , RX CONFIG</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>DMA source address</th>
+<th>DMA source address count direction</th>
+<th>DMA dest. address</th>
+<th>DMA dest. address count direction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TX</td>
+<td>s_uart0_dma_tx_buf</td>
+<td>increase</td>
+<td>APP_UART0_TX_DR</td>
+<td>fix</td>
+</tr>
+<tr>
+<td>RX</td>
+<td>APP_UART0_RX_DR</td>
+<td>fix</td>
+<td>s_uart0_dma_rx_ring</td>
+<td>increase</td>
+</tr>
+</tbody>
+</table>
+<ol start="4">
+<li>DMA address</li>
+</ol>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/register_base_DMA0.jpg" alt="image"></p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/DMA_src_dest_addr.jpg" alt="image"></p>
+<ol start="5">
+<li>UART address</li>
+</ol>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/register_base_RLIN3x.jpg" alt="image"></p>
+<p>TX : RLN3nLUTDR</p>
+<p>RX : RLN3nLURDR</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/RLIN3n_register_tx_rx.jpg" alt="image"></p>
+<ol start="6">
+<li>Smart config setting</li>
+</ol>
+<p>target trigger source : UART0</p>
+<p>INTRLIN30UR0 : RLIN30 transmit interrupt</p>
+<p>INTRLIN30UR1 : RLIN30 receive complete interrupt</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/DMA_trig_source_uart.jpg" alt="image"></p>
+<p>TX :</p>
+<p>src : set in code (s_uart0_dma_tx_buf)</p>
+<p>dest : set in code (APP_UART0_TX_DR)</p>
+<p>src count : increase</p>
+<p>dest count : fixed</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/smc_DMA00_config_tx.jpg" alt="image"></p>
+<p>RX :</p>
+<p>src : set in code (APP_UART0_RX_DR)</p>
+<p>dest : set in code (s_uart0_dma_rx_buf)</p>
+<p>src count : fixed</p>
+<p>dest count : increase</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/smc_DMA01_config_rx.jpg" alt="image"></p>
+<ol start="7">
+<li>due to UART function have no idle interrupt , need to use timer for idle detection (target : 2.5 bytes)</li>
+</ol>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>        for uart rx idle timer isr : 
+        8N1 , 1 byte = 10 bits
+        target : 2.5 bytes = 25 bits
+        target_isr_timing
+        - baud rate 115200 = (25 / 115200)*10^6 = 217.0us
+        - baud rate 415000 = (25 / 415000)*10^6 = 60.24us
+        
+        timer_freq ​= PCLK(80MHz) /prescaler (1)
+        CDR0 = (timer_freq * target_isr_timing/10^6) - 1
+        - baud rate 115200 217.0us = (80MHz * 217us/10^6) - 1 = 80 * 217 - 1 = 0x43CF
+        - baud rate 415000 60.24us = (80MHz * 60.24us/10^6) - 1 = 80 * 60.24 - 1 = 0x12D3    
+</code></pre><pre data-role="codeBlock" data-info="c" class="language-c c"><code><span class="token comment">// #define APP_UART0_BAUD              (415000U)</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">APP_UART0_BAUD</span>              <span class="token expression"><span class="token punctuation">(</span><span class="token number">115200U</span><span class="token punctuation">)</span></span></span>
+
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression"><span class="token punctuation">(</span>APP_UART0_BAUD <span class="token operator">==</span> <span class="token number">115200U</span><span class="token punctuation">)</span></span></span>
+    TAUJ1<span class="token punctuation">.</span>CDR0 <span class="token operator">=</span> <span class="token number">0x43CFU</span><span class="token punctuation">;</span>   <span class="token comment">/* 217 us = 2.5 bytes @115200 */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">elif</span> <span class="token expression"><span class="token punctuation">(</span>APP_UART0_BAUD <span class="token operator">==</span> <span class="token number">415000U</span><span class="token punctuation">)</span></span></span>
+    TAUJ1<span class="token punctuation">.</span>CDR0 <span class="token operator">=</span> <span class="token number">0x12D3U</span><span class="token punctuation">;</span>   <span class="token comment">/* 60.24 us = 2.5 bytes @415000 */</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">else</span></span>
+    <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">error</span> <span class="token string">"Unsupported APP_UART0_BAUD"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+</code></pre><p>below is RX TIMER IDLE detction flow</p>
+<div class="mermaid">flowchart TD
+    A[APP_UART0_RX_Init] --&gt; B[Reset RX buffer &amp; state]
+    B --&gt; C[UART0 Receive 1 byte enable]
+    C --&gt; D[UART0 Start]
+    D --&gt; E[STATE = RX_INIT]
+    E --&gt; F[Start t3.5 Timer]
+
+    %% UART RX interrupt
+    F --&gt;|UART RX IRQ| G[APP_UART0_RX_callback_receiveend]
+    G --&gt; H[Store received byte]
+    H --&gt; I[_prvvUARTRxISR]
+
+    %% State machine
+    I --&gt;|STATE_RX_INIT| J[Enable Timer]
+    I --&gt;|STATE_RX_ERROR| J
+    I --&gt;|STATE_RX_IDLE| K[bufferPos=0]
+    K --&gt; L[Store first byte]
+    L --&gt; M[STATE = RX_RCV]
+    M --&gt; J
+
+    I --&gt;|STATE_RX_RCV| N{bufferPos &lt; BUF_SIZE?}
+    N --&gt;|Yes| O[Store byte]
+    O --&gt; J
+    N --&gt;|No| P[STATE = RX_ERROR]
+    P --&gt; Q[Reset state]
+
+    %% Timer expiry (IDLE detected)
+    J --&gt;|Timer expired| R[APP_UART0_RX_TimerIsr]
+    R --&gt; S[_prvvTIMERExpiredISR]
+    S --&gt; T{STATE == RX_RCV?}
+    T --&gt;|Yes| U[UART Stop]
+    U --&gt; V[g_rcv_data_finish = 1]
+    T --&gt;|No| W[Ignore]
+    V --&gt; X[STATE = RX_IDLE]
+
+    %% Main loop process
+    X --&gt; Y[APP_UART0_RX_Process]
+    Y --&gt;|g_rcv_data_finish| Z[Dump RX buffer]
+    Z --&gt; AA[Clear buffer]
+    AA --&gt; AB[Reset state]
+    AB --&gt; AC[UART Start]
+</div><ol start="8">
+<li>if need to check global variable / array in watch windows , need to modify</li>
+</ol>
+<p>enable [Access during the execution] at Debugger Property &gt; Debug Tool Settings tab</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/watch_windows.jpg" alt="image"></p>
+<ol start="9">
+<li>below is log message :</li>
+</ol>
+<p>log : when <strong>send</strong> mult-len tx data</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_tx.jpg" alt="image"></p>
+<p>log : when <strong>receive</strong> 128 bytes rx data ( connect tx and rx wire)</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_rx_128_1.jpg" alt="image"><br>
+<img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_rx_128_2.jpg" alt="image"></p>
+<p>log : when <strong>receive</strong> 256 bytes rx data( connect tx and rx wire)</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_rx_256.jpg" alt="image"></p>
+<p>waveform : send tx per 250ms</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/scope_period_send_250ms.jpg" alt="image"></p>
+<p>waveform : send tx with 8 bytes</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/scope_tx_8.jpg" alt="image"></p>
+<p>waveform : send tx with 16 bytes</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/scope_tx_16.jpg" alt="image"></p>
+<p>waveform : send tx with 24 bytes</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/scope_tx_24_1.jpg" alt="image"><br>
+<img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/scope_tx_24_2.jpg" alt="image"></p>
+<p>waveform : send tx with 64 bytes</p>
+<p><img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/scope_tx_64_1.jpg" alt="image"><br>
+<img src="https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/scope_tx_64_2.jpg" alt="image"></p>
+
+      </div>
+      <div class="md-sidebar-toc">
+<div class="md-toc">
+<div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+          <a href="#sample_project_rh850_s1_uart_tx_dma_rx_interrupt" class="md-toc-link">
+            <p>Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt</p>
+
+          </a></div>
+</div>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    
+    
+    <script type="module">
+// TODO: If ZenUML gets integrated into mermaid in the future,
+//      we can remove the following lines.
+
+
+var MERMAID_CONFIG = ({"startOnLoad":false});
+if (typeof MERMAID_CONFIG !== 'undefined') {
+  MERMAID_CONFIG.startOnLoad = false
+  MERMAID_CONFIG.cloneCssStyles = false
+  MERMAID_CONFIG.theme = "default"
+}
+
+mermaid.initialize(MERMAID_CONFIG || {})
+if (typeof(window['Reveal']) !== 'undefined') {
+  function mermaidRevealHelper(event) {
+    var currentSlide = event.currentSlide
+    var diagrams = currentSlide.querySelectorAll('.mermaid')
+    for (var i = 0; i < diagrams.length; i++) {
+      var diagram = diagrams[i]
+      if (!diagram.hasAttribute('data-processed')) {
+        mermaid.init(null, diagram, ()=> {
+          Reveal.slide(event.indexh, event.indexv)
+        })
+      }
+    }
+  }
+  Reveal.addEventListener('slidetransitionend', mermaidRevealHelper)
+  Reveal.addEventListener('ready', mermaidRevealHelper)
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+} else {
+  await mermaid.run({
+    nodes: document.querySelectorAll('.mermaid')
+  })
+}
+</script>
+    
+    
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  
+    </body></html>

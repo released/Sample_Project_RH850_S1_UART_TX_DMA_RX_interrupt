@@ -254,7 +254,7 @@ flowchart TD
     AB --> AC[UART Start]
 ```
 
-8. if need to check variable in watch windows , need to modify
+8. if need to check global variable / array in watch windows , need to modify
 
 enable [Access during the execution] at Debugger Property > Debug Tool Settings tab
 
