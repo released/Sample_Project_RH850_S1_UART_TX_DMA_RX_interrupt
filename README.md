@@ -83,9 +83,9 @@ memory map (RH850/F1KM-S1)
 
 | FLASH  | LOCAL RAM(CPU1) | RETENTION RAM(CPU1) |LOCAL RAM(SELF) | RETENTION RAM(SELF) |
 |--------|----------------|--------------------|---------------|--------------------|
-| 512K   | ==0xFEBF0000== ~ 0xFEBF7FFF | 0xFEBF8000 ~ 0xFEBFFFFF | ==0xFEDF0000== ~ 0xFEDF7FFF| 0xFEDF8000 ~ 0xFEDFFFFF|
-| 768K   | ==0xFEBE8000== ~ 0xFEBF7FFF | 0xFEBF8000 ~ 0xFEBFFFFF | ==0xFEDE8000== ~ 0xFEDF7FFF| 0xFEDF8000 ~ 0xFEDFFFFF|
-| 1MB    | ==0xFEBE0000== ~ 0xFEBF7FFF | 0xFEBF8000 ~ 0xFEBFFFFF | ==0xFEDE0000== ~ 0xFEDF7FFF| 0xFEDF8000 ~ 0xFEDFFFFF|
+| 512K   | __0xFEBF0000__ ~ 0xFEBF7FFF | 0xFEBF8000 ~ 0xFEBFFFFF | __0xFEDF0000__ ~ 0xFEDF7FFF| 0xFEDF8000 ~ 0xFEDFFFFF|
+| 768K   | __0xFEBE8000__ ~ 0xFEBF7FFF | 0xFEBF8000 ~ 0xFEBFFFFF | __0xFEDE8000__ ~ 0xFEDF7FFF| 0xFEDF8000 ~ 0xFEDFFFFF|
+| 1MB    | __0xFEBE0000__ ~ 0xFEBF7FFF | 0xFEBF8000 ~ 0xFEBFFFFF | __0xFEDE0000__ ~ 0xFEDF7FFF| 0xFEDF8000 ~ 0xFEDFFFFF|
 
 
 CPU1 area vs Self area
@@ -101,22 +101,26 @@ need to allocate SRAM section : dma_buff `0xFEBF0000` (FLASH : 512K)
 ![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/cs_link_options_section_settings.jpg)
 
 
+define TX , RX DMA ram buffer in dma_buf section
+
 ```c
 #pragma section dma_buf
 volatile uint8_t s_uart0_dma_rx_ring[APP_UART0_DMA_RX_RING_SIZE];
 volatile uint8_t s_uart0_dma_tx_buf[APP_UART0_DMA_TX_BUF_SIZE];
 #pragma section default
 ```
+
 the DMA ram buffer allocation result in map file
 
 ![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/map_dma_tx_rx_buffer_addr.jpg)
 
 
+UART DMA TX , RX CONFIG 
 
 | Item | DMA source address | DMA source address count direction |DMA dest. address|DMA dest. address count direction|
 |------|--------------------|------------------------------------|-----------------|---------------------------------|
-| UART TX |s_uart0_dma_tx_buf|increase|APP_UART0_TX_DR |fix|
-| UART RX |APP_UART0_RX_DR |fix|s_uart0_dma_rx_ring|increase|
+| TX |s_uart0_dma_tx_buf|increase|APP_UART0_TX_DR |fix|
+| RX |APP_UART0_RX_DR |fix|s_uart0_dma_rx_ring|increase|
 
 
 4. DMA address 
@@ -130,6 +134,7 @@ the DMA ram buffer allocation result in map file
 ![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/register_base_RLIN3x.jpg)
 
 TX : RLN3nLUTDR
+
 RX : RLN3nLURDR
 
 ![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/RLIN3n_register_tx_rx.jpg)
@@ -139,26 +144,36 @@ RX : RLN3nLURDR
 target trigger source : UART0
 
 INTRLIN30UR0 : RLIN30 transmit interrupt 
+
 INTRLIN30UR1 : RLIN30 receive complete interrupt 
 
 ![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/DMA_trig_source_uart.jpg)
 
 TX : 
+
 src : set in code (s_uart0_dma_tx_buf)
+
 dest : set in code (APP_UART0_TX_DR)
+
 src count : increase
+
 dest count : fixed
 
 ![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/smc_DMA00_config_tx.jpg)
 
 
 RX : 
+
 src : set in code (APP_UART0_RX_DR)
+
 dest : set in code (s_uart0_dma_rx_buf)
+
 src count : fixed
+
 dest count : increase
 
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/smc_DMA00_config_rx.jpg)
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/smc_DMA01_config_rx.jpg)
 
 7. due to UART function have no idle interrupt , need to use timer for idle detection (target : 2.5 bytes)
 
