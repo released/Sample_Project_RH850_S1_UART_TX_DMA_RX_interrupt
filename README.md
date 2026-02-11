@@ -29,6 +29,20 @@ update @ 2026/02/04
 #define APP_UART0_RX_MODE_DMA       (1U)
 ```		
 
+		- modify cstart.asm , to increase stack size
+		
+```c
+;-----------------------------------------------------------------------------
+;	system stack
+;-----------------------------------------------------------------------------
+STACKSIZE	.set	0x1000
+	.section	".stack.bss", bss
+	.align	4
+	.ds	(STACKSIZE)
+	.align	4
+_stacktop:
+```
+
 2. before use DMA , need to know
 
 	- need to set __PEG__ register , before DMA to access SRAM normally
