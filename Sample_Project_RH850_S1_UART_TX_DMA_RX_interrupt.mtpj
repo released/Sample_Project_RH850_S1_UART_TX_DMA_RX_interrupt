@@ -64,13 +64,6 @@
       <TreeImageGuid>941832c1-fc3b-4e1b-94e8-01ea17128b42</TreeImageGuid>
       <ParentItem>4750b19e-6567-4899-94db-8f6cffb395d2</ParentItem>
     </Instance>
-    <Instance Guid="e2453fff-664e-422a-914e-685f596a4007">
-      <Name>drv_uart_dma.c</Name>
-      <Type>File</Type>
-      <RelativePath>drv_uart_dma.c</RelativePath>
-      <TreeImageGuid>941832c1-fc3b-4e1b-94e8-01ea17128b42</TreeImageGuid>
-      <ParentItem>4750b19e-6567-4899-94db-8f6cffb395d2</ParentItem>
-    </Instance>
     <Instance Guid="079158d3-d231-42cd-a6d6-6fd376b7be31">
       <Name>app_uart_rx_only.c</Name>
       <Type>File</Type>
@@ -89,6 +82,13 @@
       <Name>app_uart_dma_rx.c</Name>
       <Type>File</Type>
       <RelativePath>app_uart_dma_rx.c</RelativePath>
+      <TreeImageGuid>941832c1-fc3b-4e1b-94e8-01ea17128b42</TreeImageGuid>
+      <ParentItem>4750b19e-6567-4899-94db-8f6cffb395d2</ParentItem>
+    </Instance>
+    <Instance Guid="f0e86ce7-ff8b-4801-83f2-f640b55e82c9">
+      <Name>app_gmsl_uart.c</Name>
+      <Type>File</Type>
+      <RelativePath>app_gmsl_uart.c</RelativePath>
       <TreeImageGuid>941832c1-fc3b-4e1b-94e8-01ea17128b42</TreeImageGuid>
       <ParentItem>4750b19e-6567-4899-94db-8f6cffb395d2</ParentItem>
     </Instance>
@@ -522,7 +522,7 @@
       <SourceItemType4>CSource</SourceItemType4>
       <SourceItemGuid5>33f5e77e-277e-4fff-b3a6-45b04c04dc58</SourceItemGuid5>
       <SourceItemType5>CSource</SourceItemType5>
-      <SourceItemGuid6>e2453fff-664e-422a-914e-685f596a4007</SourceItemGuid6>
+      <SourceItemGuid6>f0e86ce7-ff8b-4801-83f2-f640b55e82c9</SourceItemGuid6>
       <SourceItemType6>CSource</SourceItemType6>
       <SourceItemGuid7>079158d3-d231-42cd-a6d6-6fd376b7be31</SourceItemGuid7>
       <SourceItemType7>CSource</SourceItemType7>
@@ -1027,7 +1027,7 @@ src\smc_gen\Config_OSTM0
       <LinkOptionLibraryLibMalloc-DefaultValue>False</LinkOptionLibraryLibMalloc-DefaultValue>
       <LinkOptionLibraryLibSetJmp-DefaultValue>False</LinkOptionLibraryLibSetJmp-DefaultValue>
       <IsLockedByUser>False</IsLockedByUser>
-      <TimeTagModified--0>-8584314173769097242</TimeTagModified--0>
+      <TimeTagModified--0>-8584308046353958403</TimeTagModified--0>
       <LinkOptionAllowOptimizeEntryBlock-0>False</LinkOptionAllowOptimizeEntryBlock-0>
       <LinkOptionCpu-0>False</LinkOptionCpu-0>
       <LinkOptionDebug-0>Debug</LinkOptionDebug-0>
@@ -1228,7 +1228,7 @@ src\smc_gen\Config_OSTM0
       <LibOptionLibraryLibSetJmp-DefaultValue>False</LibOptionLibraryLibSetJmp-DefaultValue>
       <LibOptionAllowDuplicateModuleName-DefaultValue>False</LibOptionAllowDuplicateModuleName-DefaultValue>
       <IsLockedByUser>False</IsLockedByUser>
-      <TimeTagModified--0>-8584314308993563579</TimeTagModified--0>
+      <TimeTagModified--0>-8584308046353958403</TimeTagModified--0>
       <LibOptionDebug-0>Debug</LibOptionDebug-0>
       <LibOptionForm-0>LibraryU</LibOptionForm-0>
       <LibOptionInput-0 />
@@ -1517,9 +1517,9 @@ src\smc_gen\Config_OSTM0
       <ItemAddTime>639057267019198224</ItemAddTime>
       <ItemAddTimeCount>1</ItemAddTimeCount>
     </Instance>
-    <Instance Guid="e2453fff-664e-422a-914e-685f596a4007">
-      <ItemAddTime>639057267019198224</ItemAddTime>
-      <ItemAddTimeCount>2</ItemAddTimeCount>
+    <Instance Guid="f0e86ce7-ff8b-4801-83f2-f640b55e82c9">
+      <ItemAddTime>639064278597715721</ItemAddTime>
+      <ItemAddTimeCount>0</ItemAddTimeCount>
     </Instance>
     <Instance Guid="079158d3-d231-42cd-a6d6-6fd376b7be31">
       <ItemAddTime>639057468222619801</ItemAddTime>
@@ -1556,7 +1556,7 @@ src\smc_gen\Config_OSTM0
       <SourceItem5-IsLockedByUser>False</SourceItem5-IsLockedByUser>
       <SourceItem5-IndividualCompileOption-0>False</SourceItem5-IndividualCompileOption-0>
       <SourceItem5-BuildingTarget-0>True</SourceItem5-BuildingTarget-0>
-      <TimeTagModified-SourceItem6--0>-8584315057835567577</TimeTagModified-SourceItem6--0>
+      <TimeTagModified-SourceItem6--0>-8584308046257060087</TimeTagModified-SourceItem6--0>
       <SourceItem6-IsLockedByUser>False</SourceItem6-IsLockedByUser>
       <SourceItem6-IndividualCompileOption-0>False</SourceItem6-IndividualCompileOption-0>
       <SourceItem6-BuildingTarget-0>True</SourceItem6-BuildingTarget-0>
@@ -2073,6 +2073,7 @@ src\smc_gen\Config_OSTM0
       <DebuggerProperty-HookProperty-HookTransaction-Disconnecting-Length>0</DebuggerProperty-HookProperty-HookTransaction-Disconnecting-Length>
       <Debugger-DebugTarget-ProcessorElementNumber>1</Debugger-DebugTarget-ProcessorElementNumber>
       <Debugger-DebugTarget-SubID>0</Debugger-DebugTarget-SubID>
+      <DebuggerProperty-EssentialProperty-EmulatorConnect-SerialNumber />
     </Instance>
   </Class>
   <Class Guid="100f3761-3d7e-4559-b1d8-375a0c7bf682">

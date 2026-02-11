@@ -4,9 +4,7 @@
 
 #include "app_uart_dma.h"
 #include "app_uart0_config.h"
-
-
-volatile uint8_t s_tx_payload[APP_UART0_DMA_TX_BUF_SIZE] = {0U};
+#include "app_gmsl_uart.h"
 
 /* DMA busy: software flag set on TxSend, cleared in DMA TX ISR. */
 static volatile uint8_t s_uart0_dma_tx_busy = 0;
@@ -35,8 +33,9 @@ volatile uint8_t s_uart0_dma_tx_buf[APP_UART0_DMA_TX_BUF_SIZE];
     src : ram buffer    (count : increase)
     dest : tx dr        (count : fix)
 */
-void APP_UART0_DMA_SetCh0(void)
+void APP_UART0_DMA_SetCh0(uint16_t len)
 {
+    s_uart0_dma_tx_len = len;
     (void)DRV_DMA_SetChannelEx(APP_UART0_DMA_UNIT,
                               APP_UART0_DMA_TX_CH,
                               APP_DMA_CH0_SRC_ADDR,
@@ -145,11 +144,7 @@ void APP_UART0_DMA_TxSend(const uint8_t *data, uint16_t len)
     // tiny_printf("len2:%u\r\n", len);
     // tiny_printf("copy_len2:%u\r\n", copy_len);
 
-    (void)DRV_DMA_SetChannelEx(APP_UART0_DMA_UNIT,
-                              APP_UART0_DMA_TX_CH,
-                              APP_DMA_CH0_SRC_ADDR,
-                              APP_DMA_CH0_DST_ADDR,
-                              copy_len);
+    APP_UART0_DMA_SetCh0(copy_len);
                               
     s_uart0_dma_tx_busy = 1U;
     R_Config_DMAC00_Resume();
@@ -164,69 +159,10 @@ void APP_UART0_DMA_TxSend(const uint8_t *data, uint16_t len)
     }
 }
 
-void APP_UART0_DMA_Tx_process(void)
-{
-    // static const uint16_t s_len_list[] = { 16U };
-    // static const uint16_t s_len_list[] = { 32U };
-    // static const uint16_t s_len_list[] = { 64U };
-    static const uint16_t s_len_list[] = { 128U };
-    // static const uint16_t s_len_list[] = { 320U };
-    // static const uint16_t s_len_list[] = { 8U, 16U, 24U, 32U};
-    // static const uint16_t s_len_list[] = { 64U, 128U, 192U};
-    // static const uint16_t s_len_list[] = { 8U, 16U, 24U, 32U, 64U, 128U, 192U, 256U, 320U};
-
-    static uint8_t s_len_idx = 0;
-    static uint8_t s_counter;
-    volatile uint16_t total_len;
-    // uint8_t s_tx_payload[APP_UART0_DMA_TX_BUF_SIZE] = {0U};
-    uint16_t i;
-
-    total_len = s_len_list[s_len_idx];
-    s_len_idx++;
-    if (s_len_idx >= (uint8_t)(sizeof(s_len_list) / sizeof(s_len_list[0])))
-    {
-        s_len_idx = 0U;
-
-    }
-
-    if (total_len > APP_UART0_DMA_TX_BUF_SIZE)
-    {
-        tiny_printf("over size:%u\r\n",total_len);
-        total_len = APP_UART0_DMA_TX_BUF_SIZE;
-    }
-
-    /* Format: 0x55(header), counter, payload..., 0xAA(tail) */
-    s_tx_payload[0] = 0x55U;
-    if (total_len > 1U)
-    {
-        s_tx_payload[1] = s_counter++;
-    }
-    #if 0   // fix data
-    for (i = 2U; i + 1U < total_len; i++)
-    {
-        s_tx_payload[i] = 0xBB;
-    }
-    s_tx_payload[total_len - 2U] = s_counter;
-    #else   // increase
-    for (i = 2U; i + 1U < total_len; i++)
-    {
-        s_tx_payload[i] = (uint8_t)(i - 2U);
-    }
-    #endif
-    if (total_len > 1U)
-    {
-        s_tx_payload[total_len - 1U] = 0xAAU;
-    }
-
-    APP_UART0_DMA_TxSend((uint8_t *)s_tx_payload, total_len);
-
-    //debug log
-    APP_UART0_DMA_TxDump((uint8_t *)s_tx_payload, total_len);
-}
 
 void APP_UART0_DMA_TxDump(const uint8_t *pucBuff, uint16_t nBytes)
 {
-    #if 0
+    #if 1
     uint16_t i = 0U;
 
     if (nBytes == 0U)
@@ -251,6 +187,11 @@ void APP_UART0_DMA_TxDump(const uint8_t *pucBuff, uint16_t nBytes)
     // }
     // tiny_printf("\r\n\r\n");
     #endif
+}
+
+void APP_UART0_DMA_Tx_process(void)
+{
+    APP_GMSL_TxProcess();
 }
 
 

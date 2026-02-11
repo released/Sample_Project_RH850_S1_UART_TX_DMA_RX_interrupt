@@ -81,10 +81,10 @@
       <Path>misc_config.c</Path>
       <Path>retarget.c</Path>
       <Path>drv_dma.c</Path>
-      <Path>drv_uart_dma.c</Path>
       <Path>app_uart_rx_only.c</Path>
       <Path>app_uart_dma_tx.c</Path>
       <Path>app_uart_dma_rx.c</Path>
+      <Path>app_gmsl_uart.c</Path>
     </Files>
     <DebugOptions>
       <ConnectSettings>
@@ -127,10 +127,10 @@
           <Path>DefaultBuild\Config_UART1_user.obj</Path>
           <Path>DefaultBuild\r_cg_dma_common.obj</Path>
           <Path>DefaultBuild\drv_dma.obj</Path>
-          <Path>DefaultBuild\drv_uart_dma.obj</Path>
           <Path>DefaultBuild\app_uart_rx_only.obj</Path>
           <Path>DefaultBuild\app_uart_dma_tx.obj</Path>
           <Path>DefaultBuild\app_uart_dma_rx.obj</Path>
+          <Path>DefaultBuild\app_gmsl_uart.obj</Path>
         </LinkOrder>
         <CommonOptions>
           <IncludePathForC>src\smc_gen\Config_UART1</IncludePathForC>

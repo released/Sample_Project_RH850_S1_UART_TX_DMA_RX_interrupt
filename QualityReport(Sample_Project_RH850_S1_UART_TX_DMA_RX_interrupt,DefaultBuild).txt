@@ -1,0 +1,336 @@
+QualityReport
+2026年2月11日 下午 05:31:26
+
+------ Start build(Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt, DefaultBuild) ------
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe custom_func.c -oDefaultBuild\custom_func.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_4a2153fd0a2d481091e9bd72bfc290f6kb1al14n.ghm -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe app_gmsl_uart.c -oDefaultBuild\app_gmsl_uart.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_3c08ef0104dd49348d228218fbebeebfkdvvak4n.sqc -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_OSTM0\Config_OSTM0.c -oDefaultBuild\Config_OSTM0.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_b416f31707ad4822ab81216e2650036fh5qayhcg.faa -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_TAUJ0_0\Config_TAUJ0_0.c -oDefaultBuild\Config_TAUJ0_0.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_01c64a452bad4df3bd093c93b0df99fckh1rfnbx.uaz -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_UART0\Config_UART0_user.c -oDefaultBuild\Config_UART0_user.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_fe463dc378544c8bae8f6c92518930cfcnsnj5zk.cw3 -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_DMAC01\Config_DMAC01_user.c -oDefaultBuild\Config_DMAC01_user.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_03337aaff014432e80d7fccc57aeb02a4vaycljn.pia -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\general\r_smc_intprg.c -oDefaultBuild\r_smc_intprg.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_7d9682d6e8314df981e94d2e0538e537pwcxqtxi.jsw -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\general\r_cg_intvector.c -oDefaultBuild\r_cg_intvector.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_92d01844f23a4292bd51ea4fb670b5b6v4qyevzm.snl -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe misc_config.c -oDefaultBuild\misc_config.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_510b150d225e42fe8ec5d268ad3cd24bioonhwiz.nud -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_TAUJ0_0\Config_TAUJ0_0_user.c -oDefaultBuild\Config_TAUJ0_0_user.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_c4f9db291d694132a0c30e8dd79a4e2flfnfavhw.e0s -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_TAUJ1_0\Config_TAUJ1_0.c -oDefaultBuild\Config_TAUJ1_0.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_83ef0777cdfa4ff3bc8b493dec1403e6fhzkirwy.vi4 -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_DMAC00\Config_DMAC00.c -oDefaultBuild\Config_DMAC00.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_b110a94e8dfa41a7a870222cea00620e31wmcr0u.idw -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\general\r_cg_cgc.c -oDefaultBuild\r_cg_cgc.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_c3c5731c00c748e288edfd3e130f73145bovau3t.0yq -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_TAUJ1_0\Config_TAUJ1_0_user.c -oDefaultBuild\Config_TAUJ1_0_user.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_6127dcebbbbd464ca1180ab6a0a7542a45lruh3w.a4x -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe retarget.c -oDefaultBuild\retarget.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_d4cc256da3254b30894bfaa8de91f576dva13v1v.cnz -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_OSTM0\Config_OSTM0_user.c -oDefaultBuild\Config_OSTM0_user.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_3d4835dcacca4ed291571399da80ecaajkd1ese2.dqv -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\general\r_cg_main.c -oDefaultBuild\r_cg_main.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_d8633eaff27d4f90879c84da0f6d3b5akcdigvwm.530 -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe app_uart_rx_only.c -oDefaultBuild\app_uart_rx_only.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_e455e50a19974894b673dfe35583b8dbwruq25w1.n0n -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\general\r_cg_dma_common.c -oDefaultBuild\r_cg_dma_common.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_00d1540df57544948870c3c180edef40n2j0prdd.3ph -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_DMAC00\Config_DMAC00_user.c -oDefaultBuild\Config_DMAC00_user.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_33bcaec8c8e9476986a865474c56d5403jhwyfj1.zbu -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\r_pincfg\Pin.c -oDefaultBuild\Pin.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_e8d8246753c64cd39e28aa309c9bc8e5z4b0gznl.xok -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_UART1\Config_UART1.c -oDefaultBuild\Config_UART1.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_e16e15746a7044bf94b15e776149bb31vbki0e5q.wbc -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe drv_dma.c -oDefaultBuild\drv_dma.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_0688adeb37654fe99bd95f62dba1604910rl1qel.kdp -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\general\r_cg_cgc_user.c -oDefaultBuild\r_cg_cgc_user.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_769f497376c943cf8c9c7769279812b9pegxp34v.lfq -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_DMAC01\Config_DMAC01.c -oDefaultBuild\Config_DMAC01.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_46e15739dd3d418da9f11b5db08cf171w3hn13bx.ukf -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe app_uart_dma_tx.c -oDefaultBuild\app_uart_dma_tx.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_b67d1bacf5a941f3b102be930a0246d6z3drxmq1.10h -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_UART1\Config_UART1_user.c -oDefaultBuild\Config_UART1_user.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_9d4a4ebb55d54d61b1b78a8f005959cds0ananci.th0 -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\general\r_smc_interrupt.c -oDefaultBuild\r_smc_interrupt.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_4fbf5ec7c5bb458ba46c01c12fcf77c51e3pt532.o13 -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_PORT\Config_PORT.c -oDefaultBuild\Config_PORT.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_61882179712f4a2e89cfe26cd3a71b07nz3u5wwl.ydm -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_UART0\Config_UART0.c -oDefaultBuild\Config_UART0.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_f41015fb3dd747219c9f84ffc6c93493jpa0d1qw.vga -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe boot.asm -oDefaultBuild\boot.obj -Xcpu=g3kh -g -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_6753c5b207c8411abf39e01c48072b54wlullji1.5yd -Xmsg_lang=english
+app_uart_dma_tx.c(166):W0520177:Variable "i" was declared but never referenced
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe app_uart_dma_rx.c -oDefaultBuild\app_uart_dma_rx.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_7410021cc9d54562afd82db05d741f84fluf43kf.puy -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe cstart.asm -oDefaultBuild\cstart.obj -Xcpu=g3kh -g -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_5664f9a1e057418494893292cf51f2c6zhqlqy4l.3qv -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\general\r_cg_systeminit.c -oDefaultBuild\r_cg_systeminit.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_2213b30c894e41d9863db4590c8fcedbtplduklj.azm -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\ccrh.exe src\smc_gen\Config_PORT\Config_PORT_user.c -oDefaultBuild\Config_PORT_user.obj -Xcpu=g3kh -g -g_line -Isrc\smc_gen\Config_UART1 -Isrc\smc_gen\Config_TAUJ1_0 -Isrc\smc_gen\Config_DMAC01 -Isrc\smc_gen\Config_DMAC00 -Isrc\smc_gen\Config_UART0 -Isrc\smc_gen\r_pincfg -Isrc\smc_gen\general -Isrc\smc_gen\Config_TAUJ0_0 -Isrc\smc_gen\Config_PORT -Isrc\smc_gen\Config_OSTM0 -I. -lang=c99 -Xdbl_size=4 -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\averyc\AppData\Local\Temp\CSPlusBuildTool_f72a9cfe17fb4b77b8492eee4863431did3ijbk2.lfk -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.07.00\Bin\rlink.exe -MAKEUD=DefaultBuild\Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt.lk.ud -subcommand=DefaultBuild\Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt.clnk
+W0561017:Paid license of CC-RH V2 is not found, and the evaluation period has expired. Please consider purchasing the product.
+RAMDATA SECTION:  00001819 Byte(s)
+ROMDATA SECTION:  00000d7c Byte(s)
+PROGRAM SECTION:  00012192 Byte(s)
+W0561017:Paid license of CC-RH V2 is not found, and the evaluation period has expired. Please consider purchasing the product.
+Renesas Optimizing Linker Completed
+------ Build ended(Error:0, Warning:3)(Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt, DefaultBuild) ------
+
+--- CommandFile 1 ---
+DefaultBuild\Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt.clnk :
+-input=DefaultBuild\boot.obj
+-input=DefaultBuild\cstart.obj
+-input=DefaultBuild\Config_OSTM0.obj
+-input=DefaultBuild\Config_OSTM0_user.obj
+-input=DefaultBuild\Config_PORT.obj
+-input=DefaultBuild\Config_PORT_user.obj
+-input=DefaultBuild\Config_TAUJ0_0.obj
+-input=DefaultBuild\Config_TAUJ0_0_user.obj
+-input=DefaultBuild\r_cg_cgc.obj
+-input=DefaultBuild\r_cg_cgc_user.obj
+-input=DefaultBuild\r_cg_intvector.obj
+-input=DefaultBuild\r_cg_main.obj
+-input=DefaultBuild\r_cg_systeminit.obj
+-input=DefaultBuild\r_smc_interrupt.obj
+-input=DefaultBuild\r_smc_intprg.obj
+-input=DefaultBuild\Pin.obj
+-input=DefaultBuild\custom_func.obj
+-input=DefaultBuild\misc_config.obj
+-input=DefaultBuild\Config_UART0.obj
+-input=DefaultBuild\Config_UART0_user.obj
+-input=DefaultBuild\retarget.obj
+-input=DefaultBuild\Config_DMAC00.obj
+-input=DefaultBuild\Config_DMAC00_user.obj
+-input=DefaultBuild\Config_DMAC01.obj
+-input=DefaultBuild\Config_DMAC01_user.obj
+-input=DefaultBuild\Config_TAUJ1_0.obj
+-input=DefaultBuild\Config_TAUJ1_0_user.obj
+-input=DefaultBuild\Config_UART1.obj
+-input=DefaultBuild\Config_UART1_user.obj
+-input=DefaultBuild\r_cg_dma_common.obj
+-input=DefaultBuild\drv_dma.obj
+-input=DefaultBuild\app_uart_rx_only.obj
+-input=DefaultBuild\app_uart_dma_tx.obj
+-input=DefaultBuild\app_uart_dma_rx.obj
+-input=DefaultBuild\app_gmsl_uart.obj
+-debug
+-nocompress
+-NOOPtimize
+-output=DefaultBuild\Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt.abs
+-library=v850e3v5\rhf4n.lib
+-library=v850e3v5\libmalloc.lib
+-list=DefaultBuild\Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt.map
+-show=reference,xreference,total_size
+-start=RESET/0,EIINTTBL.const/00000200,.const,.INIT_DSEC.const,.INIT_BSEC.const,.text,.data,privateData.const,privateData.data/00008000,dma_buf.bss/FEBF0000,.data.R,.bss,.stack.bss,privateData.bss/FEDF0000
+-rom=.data=.data.R
+-total_size
+-nologo
+-end
+-input=DefaultBuild\Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt.abs
+-output=DefaultBuild\Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt.mot
+-form=stype
+-exit
+
+
+--- SHA1 hash value of output files ---
+D:\SourceCode\_Avery_Renesas\CS+\Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt\DefaultBuild\Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt.abs: b0f84089fd19106f77c48c42662978701b5eee56
+D:\SourceCode\_Avery_Renesas\CS+\Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt\DefaultBuild\Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt.mot: cfd017b9bf0e8f0a875cd161c4427d2adfce2838
+
+
+--- System Information ---
+*OS Version
+ Microsoft Windows 11 專業版 (-, 10.0.26200, WOW64)
+*Language
+ 中文(台灣)
+*.NET Framework Version
+ Microsoft .NET Framework 4 [.NET 4.8 or later] (533509)
+*WebView2 Version
+ 144.0.3719.115
+
+--- Application Information ---
+*Product Name
+ CS+ for CC
+*Package Version
+ V8.14.00  [02 Jun 2025]
+*Version
+ V9.14.00.04 [25 Apr 2025]
+*Assembly Version
+ 3.12.10.1
+*Sales Area
+ Japan
+*Product License
+ 
+*Execution Place
+ C:\Program Files (x86)\Renesas Electronics\CS+\CC
+*Memory Usage
+ *Private Working Set
+  309 MB
+ *Number of GDI Objects
+  2243
+ *Number of USER Objects
+  1135
+ *Opened Files
+  14 editors, 14 files, 220 KB
+
+--- Build Tool Plug-in Information ---
+RH850 Build tool CC-RH Plug-in
+ *Version
+  V8.14.00.01 [10 Apr 2025]
+ *Assembly Version
+  1.1.10.12
+ *DLL File Name
+  BuildToolCCRH.dll
+RL78 Build tool CC-RL Plug-in
+ *Version
+  V8.14.00.01 [10 Apr 2025]
+ *Assembly Version
+  1.0.0.0
+ *DLL File Name
+  BuildToolCCRL.dll
+RX Build tool CC-RX Plug-in
+ *Version
+  V8.14.00.01 [10 Apr 2025]
+ *Assembly Version
+  3.12.10.1
+ *DLL File Name
+  BuildToolCCRX.dll
+RH850 Build tool GHS CCRH850 Plug-in
+ *Version
+  V1.11.00.01 [18 Apr 2025]
+ *Assembly Version
+  1.0.0.0
+ *DLL File Name
+  BuildToolGHSCCRH850.dll
+
+--- Debug Tool Plug-in Information ---
+Debugger Collection Plug-in
+ *Version
+  V8.14.00.02 [08 May 2025]
+ *Assembly Version
+  2.12.10.1
+ *DLL File Name
+  DebugToolCollection.dll
+
+--- Other Plug-in Information ---
+Code Generator Plug-in for RH850
+ *Version
+  V1.02.02.05 [25 May 2018]
+ *Assembly Version
+  1.0.0.0
+ *DLL File Name
+  CodeGeneratorRH850.dll
+Code Generator Plug-in
+ *Version
+  V4.08.06.01 [28 Oct 2022]
+ *Assembly Version
+  3.0.0.0
+ *DLL File Name
+  CodePart.dll
+Code Generator/PinView Plug-in
+ *Version
+  V2.10.07.02 [08 Nov 2021]
+ *Assembly Version
+  1.0.0.0
+ *DLL File Name
+  CodePart2.dll
+Debug Console Plug-in
+ *Version
+  V8.09.00.03 [24 Nov 2022]
+ *Assembly Version
+  8.9.0.0
+ *DLL File Name
+  DebugConsole.dll
+Quick and Effective tool solution - QE
+ *Version
+  V9.14.00.02 [08 Apr 2025]
+ *Assembly Version
+  1.15.10.16
+ *DLL File Name
+  InCarTools.dll
+Pin Configurator Plug-in
+ *Version
+  V1.54.01.01 [31 Jul 2014]
+ *Assembly Version
+  1.6.10.23
+ *DLL File Name
+  PinConfig.dll
+Program Analyzer Plug-in
+ *Version
+  V4.13.00.03 [24 May 2023]
+ *Assembly Version
+  3.12.11.9
+ *DLL File Name
+  ProgramAnalyzer.dll
+IronPython Console Plug-in
+ *Version
+  V1.49.00.02 [08 Nov 2024]
+ *Assembly Version
+  1.6.10.23
+ *DLL File Name
+  PythonConsole.dll
+Editor plug-in DLL
+ *Version
+  V1.21.00.01 [09 Apr 2025]
+ *Assembly Version
+  1.1.0.0
+ *DLL File Name
+  SEditor.dll
+Smart Configurator for RH850 Communication Plug-in
+ *Version
+  V1.02.11.01 [08 May 2025]
+ *Assembly Version
+  1.0.0.0
+ *DLL File Name
+  SmcCodePartRH850.dll
+Smart Configurator for RL78 Communication Plug-in
+ *Version
+  V1.00.11.01 [25 Nov 2024]
+ *Assembly Version
+  1.0.0.0
+ *DLL File Name
+  SmcCodePartRL78.dll
+Stack Usage Tracer
+ *Version
+  V1.05.00.02 [30 Jul 2014]
+ *Assembly Version
+  1.30.11.15
+ *DLL File Name
+  Stk.dll
+Update Manager Plug-in
+ *Version
+  V2.05.00.04 [30 May 2025]
+ *Assembly Version
+  1.25.4.17
+ *DLL File Name
+  Update.dll
+
+Debug Tool Common Interface
+ *Version
+  V8.14.00.02 [08 May 2025]
+ *Assembly Version
+  3.12.10.1
+ *DLL File Name
+  CommonDebuggerInterface.dll
+Device Information Common Interface
+ *Version
+  V9.14.00.02 [08 Apr 2025]
+ *Assembly Version
+  3.0.0.0
+ *DLL File Name
+  DeviceInformation.dll
+
+--- Main Project Information ---
+D:\SourceCode\_Avery_Renesas\CS+\Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt\Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt.mtpj
+Microcontroller Information
+ *R7F701692
+  *File Name: Version
+   RH850_Productlist.xml: V8.140000
+   R7F701692_common.xml: V1.40.00.XX.XX
+   DR7F701692.DVF: V1.40
+   -: -
+   -: -
+  
+
+Build Tool Information
+ *CC-RH
+   * Version of plug-in(*.dll)
+     V8.14.00.02 [10 Apr 2025]
+   * The Version of the Compiler Package
+     V2.07.00
+  
+
+Debug Tool Information
+ *RH850 E1(LPD)
+  Debugger Library V8.14.00.02 [08 May 2025]
+  
+
+Other Tool Information
+ *None
+
+ *None
+
+ *None
+
+ *None
+
+ *Program Analyzer
+  *Version
+   V4.13.00.03 [24 May 2023]
+
+ *Smart Configurator
+ *None
+
+ *None
+
+

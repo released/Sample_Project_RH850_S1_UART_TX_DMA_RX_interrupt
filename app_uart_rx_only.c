@@ -3,8 +3,8 @@
 #include "misc_config.h"
 #include "retarget.h"
 
-#include "drv_uart_dma.h"
 #include "app_uart_rx_only.h"
+#include "app_gmsl_uart.h"
 
 extern uint16_t g_tmr_compare_vaue;
 
@@ -46,10 +46,18 @@ void _vComPortResetState(void)
 {
 	UART0_RX_Manager.g_bufferPos = 0U;					
 	UART0_RX_Manager.e_rcv_state = STATE_RX_IDLE;
+    APP_GMSL_ClearExpect();
 }
 
 void _prvvTIMERExpiredISR(void)
 {
+    if (APP_GMSL_IsWaiting() != 0U)
+    {
+        /* For GMSL responses, use the higher-level wait/timeout logic. */
+        _vComPortTimersDisable();
+        return;
+    }
+
 	UART0_RX_Manager.g_bufferLastByte = UART0_RX_Manager.g_bufferPos - 1U;
 
     /*
@@ -65,6 +73,12 @@ void _prvvTIMERExpiredISR(void)
 
 	_vComPortTimersDisable();   
 	UART0_RX_Manager.e_rcv_state = STATE_RX_IDLE;
+
+    if (APP_GMSL_IsWaiting() != 0U)
+    {
+        APP_GMSL_SetTimeout(1U);
+        APP_GMSL_SetError(1U);
+    }
 }
 
 void _prvvUARTRxISR(void)
@@ -88,6 +102,34 @@ void _prvvUARTRxISR(void)
 			UART0_RX_Manager.e_rcv_state = STATE_RX_RCV;
 			/* Enable t3.5 timers. */
 			_vComPortTimersEnable();
+
+            if (APP_GMSL_GetExpect() == GMSL_RESP_ACK)
+            {
+                if (ucByte == (uint8_t)GMSL_UART_ACK_BYTE)
+                {
+                    APP_GMSL_SetAckOk(1U);
+                    APP_GMSL_SetRecvLen(1U);
+                    UART0_RX_Manager.g_rcv_data_finish = 1U;
+                    R_Config_UART0_Stop();
+                    _vComPortTimersDisable();
+                    UART0_RX_Manager.e_rcv_state = STATE_RX_IDLE;
+                }
+                else
+                {
+                    /* Ignore unexpected byte while waiting for ACK. */
+                    UART0_RX_Manager.g_bufferPos = 0U;
+                }
+            }
+            else if ((APP_GMSL_GetExpect() == GMSL_RESP_DATA) &&
+                     (APP_GMSL_GetExpectedLen() != 0U) &&
+                     (UART0_RX_Manager.g_bufferPos >= APP_GMSL_GetExpectedLen()))
+            {
+                APP_GMSL_SetRecvLen(UART0_RX_Manager.g_bufferPos);
+                UART0_RX_Manager.g_rcv_data_finish = 1U;
+                R_Config_UART0_Stop();
+                _vComPortTimersDisable();
+                UART0_RX_Manager.e_rcv_state = STATE_RX_IDLE;
+            }
             break;
 
         case STATE_RX_RCV:
@@ -102,6 +144,34 @@ void _prvvUARTRxISR(void)
 				_vComPortResetState();			
             }
             _vComPortTimersEnable();
+
+            if (APP_GMSL_GetExpect() == GMSL_RESP_ACK)
+            {
+                if (ucByte == (uint8_t)GMSL_UART_ACK_BYTE)
+                {
+                    APP_GMSL_SetAckOk(1U);
+                    APP_GMSL_SetRecvLen(1U);
+                    UART0_RX_Manager.g_rcv_data_finish = 1U;
+                    R_Config_UART0_Stop();
+                    _vComPortTimersDisable();
+                    UART0_RX_Manager.e_rcv_state = STATE_RX_IDLE;
+                }
+                else
+                {
+                    /* Ignore unexpected byte while waiting for ACK. */
+                    UART0_RX_Manager.g_bufferPos = 0U;
+                }
+            }
+            else if ((APP_GMSL_GetExpect() == GMSL_RESP_DATA) &&
+                     (APP_GMSL_GetExpectedLen() != 0U) &&
+                     (UART0_RX_Manager.g_bufferPos >= APP_GMSL_GetExpectedLen()))
+            {
+                APP_GMSL_SetRecvLen(UART0_RX_Manager.g_bufferPos);
+                UART0_RX_Manager.g_rcv_data_finish = 1U;
+                R_Config_UART0_Stop();
+                _vComPortTimersDisable();
+                UART0_RX_Manager.e_rcv_state = STATE_RX_IDLE;
+            }
             break;
     }
 }
@@ -136,6 +206,17 @@ void APP_UART0_RX_callback_error(uint32_t err_type)
                 tiny_printf("uart rx:Bit Error Flag\r\n");
                 break;
         }
+
+        if (APP_GMSL_IsWaiting() != 0U)
+        {
+            /* Treat RX errors during GMSL wait as a timeout to avoid silent drops. */
+            APP_GMSL_SetTimeout(1U);
+            APP_GMSL_SetError(1U);
+            UART0_RX_Manager.g_rcv_data_finish = 1U;
+            R_Config_UART0_Stop();
+            _vComPortTimersDisable();
+            UART0_RX_Manager.e_rcv_state = STATE_RX_IDLE;
+        }
         UART0_RX_Manager.g_uartrxerr = 0U;
     }
 }
@@ -165,15 +246,56 @@ void APP_UART0_RX_Process(void)
 	if (UART0_RX_Manager.g_rcv_data_finish)
 	{
 		UART0_RX_Manager.g_rcv_data_finish  = 0U; 
-        
-        tiny_printf("uart rx:buffer\r\n");
 
-		dump_buffer8((uint8_t *) UART0_RX_Manager.g_rx_buffer , UART0_RX_Manager.g_bufferPos);	
+        if (UART0_RX_Manager.g_bufferPos == 0)
+        {
 
-		reset_buffer((uint8_t*) UART0_RX_Manager.g_rx_buffer, 0x00U , UART0_RX_Manager.g_bufferPos);   
+            _vComPortResetState(); 	            
+            R_Config_UART0_Start();	
+            return;
+        }
 
-		_vComPortResetState(); 	
-		
-		R_Config_UART0_Start();	
+        if (APP_GMSL_GetExpect() != GMSL_RESP_NONE)
+        {
+            if (APP_GMSL_GetError() != 0U)
+            {
+                if (APP_GMSL_GetTimeout() != 0U)
+                {
+                    tiny_printf("[GMSL RX] TIMEOUT\r\n");
+                }
+                else
+                {
+                    tiny_printf("gmsl rx:error\r\n");
+                }
+            }
+            else if (APP_GMSL_GetExpect() == GMSL_RESP_ACK)
+            {
+                if (APP_GMSL_GetAckOk() != 0U)
+                {
+                    tiny_printf("[GMSL RX] ACK\r\n");
+                    tiny_printf("[GMSL RX] ---- end write ----\r\n");
+                }
+                else
+                {
+                    tiny_printf("gmsl rx:ack invalid\r\n");
+                }
+            }
+            else if (APP_GMSL_GetExpect() == GMSL_RESP_DATA)
+            {
+                tiny_printf("[GMSL RX] DATA len=%u\r\n", UART0_RX_Manager.g_bufferPos);
+                dump_buffer8((uint8_t *) UART0_RX_Manager.g_rx_buffer,
+                             UART0_RX_Manager.g_bufferPos);
+                tiny_printf("[GMSL RX] ---- end read ----\r\n");
+            }
+        }
+        else
+        {
+            tiny_printf("uart rx:buffer\r\n");
+            dump_buffer8((uint8_t *) UART0_RX_Manager.g_rx_buffer , UART0_RX_Manager.g_bufferPos);	
+        }
+
+        reset_buffer((uint8_t*) UART0_RX_Manager.g_rx_buffer, 0x00U , UART0_RX_Manager.g_bufferPos);   
+        _vComPortResetState(); 	
+        R_Config_UART0_Start();	
 	}
 }

@@ -22,6 +22,12 @@ update @ 2026/02/04
         - TX DMA
 
         - RD with regular interrupt , by using timer irq , for idle detection 
+		check below define in app_uart0_config.h
+		
+```c
+/* UART0 RX mode select: 1 = DMA RX, 0 = interrupt RX-only */
+#define APP_UART0_RX_MODE_DMA       (1U)
+```		
 
 2. before use DMA , need to know
 
@@ -208,51 +214,6 @@ dest count : increase
     #error "Unsupported APP_UART0_BAUD"
 #endif
 ```
-below is RX TIMER IDLE detction flow
-
-```mermaid
-flowchart TD
-    A[APP_UART0_RX_Init] --> B[Reset RX buffer & state]
-    B --> C[UART0 Receive 1 byte enable]
-    C --> D[UART0 Start]
-    D --> E[STATE = RX_INIT]
-    E --> F[Start t3.5 Timer]
-
-    %% UART RX interrupt
-    F -->|UART RX IRQ| G[APP_UART0_RX_callback_receiveend]
-    G --> H[Store received byte]
-    H --> I[_prvvUARTRxISR]
-
-    %% State machine
-    I -->|STATE_RX_INIT| J[Enable Timer]
-    I -->|STATE_RX_ERROR| J
-    I -->|STATE_RX_IDLE| K[bufferPos=0]
-    K --> L[Store first byte]
-    L --> M[STATE = RX_RCV]
-    M --> J
-
-    I -->|STATE_RX_RCV| N{bufferPos < BUF_SIZE?}
-    N -->|Yes| O[Store byte]
-    O --> J
-    N -->|No| P[STATE = RX_ERROR]
-    P --> Q[Reset state]
-
-    %% Timer expiry (IDLE detected)
-    J -->|Timer expired| R[APP_UART0_RX_TimerIsr]
-    R --> S[_prvvTIMERExpiredISR]
-    S --> T{STATE == RX_RCV?}
-    T -->|Yes| U[UART Stop]
-    U --> V[g_rcv_data_finish = 1]
-    T -->|No| W[Ignore]
-    V --> X[STATE = RX_IDLE]
-
-    %% Main loop process
-    X --> Y[APP_UART0_RX_Process]
-    Y -->|g_rcv_data_finish| Z[Dump RX buffer]
-    Z --> AA[Clear buffer]
-    AA --> AB[Reset state]
-    AB --> AC[UART Start]
-```
 
 8. if need to check global variable / array in watch windows , need to modify
 
@@ -260,41 +221,197 @@ enable [Access during the execution] at Debugger Property > Debug Tool Settings 
 
 ![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/watch_windows.jpg)
 
-9. below is log message :
+9. use another MCU to emulate GMSL device , and below is communication protocol
 
-log : when __send__ mult-len tx data
+MCU send WRITE packet to GMSL
+```c
+/* GMSL UART Base Mode WRITE packet format (MCU -> GMSL):
+ * [0] SYNC        = 0x79
+ * [1] DEV_ADDR_RW = (dev_addr << 1) | 0
+ * [2] REG_ADDR
+ * [3] LEN         = N (1..255, 256 => 0x00)
+ * [4..] DATA[0..N-1]
+ *
+ * Response (GMSL -> MCU): ACK 0xC3 only.
+ */
+```
 
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_tx.jpg)
+MCU send READ packet to GMSL
+```c
 
-log : when __receive__ 128 bytes rx data ( connect tx and rx wire)
+/* GMSL UART Base Mode READ request format (MCU -> GMSL):
+ * [0] SYNC        = 0x79
+ * [1] DEV_ADDR_RW = (dev_addr << 1) | 1
+ * [2] REG_ADDR
+ * [3] LEN         = N (1..255, 256 => 0x00)
+ *
+ * Response (GMSL -> MCU): DATA[0..N-1] only (no ACK).
+ */
+```
 
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_rx_128_1.jpg)
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_rx_128_2.jpg)
+Below is WRITE/READ packet designflow
+
+```mermaid
+flowchart TD
+    A["Start: APP_GMSL_TxProcess"] --> B{"Select Command"}
+    B -->|"WRITE"| C["APP_GMSL_BuildWritePacket<br/>SYNC + ADDR[W] + REG + LEN + DATA"]
+    B -->|"READ"| D["APP_GMSL_BuildReadPacket<br/>SYNC + ADDR[R] + REG + LEN"]
+
+    C --> E["TX DMA Send Packet"]
+    D --> E
+
+    E --> F{"RX wait (RX-only or RX-DMA)"}
+    F -->|"WRITE"| G["Expect ACK (0xC3)"]
+    F -->|"READ"| H["Expect DATA length = LEN"]
+
+    G --> I{"ACK received?"}
+    I -->|"Yes"| J["Log: ACK<br/>End write"]
+    I -->|"No (timeout)"| K["Log: TIMEOUT<br/>End write"]
+
+    H --> L{"DATA received len == LEN?"}
+    L -->|"Yes"| M["Log: DATA len<br/>End read"]
+    L -->|"No (timeout)"| N["Log: TIMEOUT<br/>End read"]
+
+    J --> O["Idle / Wait next TX"]
+    K --> O
+    M --> O
+    N --> O
+
+```
+Below is RX‑only vs RX‑DMA detail difference
+
+```mermaid
+flowchart TD
+    A["Start: RX Wait State<br/>APP_GMSL_ExpectAck / APP_GMSL_ExpectData"] --> B{"RX Mode?"}
+
+    B -->|"RX-only (IRQ byte)"| C["UART RX ISR: byte-by-byte"]
+    C --> D["Store byte -> buffer<br/>update bufferPos"]
+    D --> E{"Expect type"}
+    E -->|"ACK"| F["Check first byte == 0xC3"]
+    E -->|"DATA"| G["if bufferPos >= expected_len"]
+    F --> H["Done: set recv_len / ack_ok<br/>stop UART + stop timer"]
+    G --> H
+    D --> I["Reset idle timer every byte"]
+    I --> J["TAUJ1 idle timeout"]
+    J --> K["Timeout: set error/tmo<br/>finish + stop UART"]
+
+    B -->|"RX-DMA"| L["DMA writes ring buffer"]
+    L --> M["TAUJ1 tick: read DMA write_pos"]
+    M --> N{"write_pos changed?"}
+    N -->|"Yes"| O["update last_pos<br/>reset wait_ticks"]
+    N -->|"No"| P["wait_ticks++"]
+    M --> Q{"Expect type"}
+    Q -->|"ACK"| R["if write_pos >= 1"]
+    Q -->|"DATA"| S["if write_pos >= expected_len"]
+    R --> T["Done: set bufferPos<br/>stop DMA + stop timer"]
+    S --> T
+    P --> U{"wait_ticks >= timeout?"}
+    U -->|"Yes"| V["Timeout: set error/tmo<br/>finish + stop DMA"]
+
+    H --> W["Main loop prints log<br/>ACK / DATA / TIMEOUT"]
+    T --> W
+    V --> W
+
+```
+
+10. below is log message :
+
+log : when __WRITE__ tx data ( 8 bytes )
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_TX_DMA_8.jpg)
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_TX_DMA_8.jpg)
 
 
-log : when __receive__ 256 bytes rx data( connect tx and rx wire)
+log : when __WRITE__ tx data ( 16 bytes )
 
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_rx_256.jpg)
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_TX_DMA_16.jpg)
 
-waveform : send tx per 250ms
-
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/scope_period_send_250ms.jpg)
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_TX_DMA_16.jpg)
 
 
-waveform : send tx with 8 bytes
+log : when __WRITE__ tx data ( 32 bytes )
 
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/scope_tx_8.jpg)
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_TX_DMA_32.jpg)
 
-waveform : send tx with 16 bytes
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_TX_DMA_32.jpg)
 
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/scope_tx_16.jpg)
 
-waveform : send tx with 24 bytes
+log : when __WRITE__ tx data ( 48 bytes )
 
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/scope_tx_24_1.jpg)
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/scope_tx_24_2.jpg)
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_TX_DMA_48.jpg)
 
-waveform : send tx with 64 bytes
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_TX_DMA_48.jpg)
 
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/scope_tx_64_1.jpg)
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/scope_tx_64_2.jpg)
+
+log : when __WRITE__ tx data ( 64 bytes )
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_TX_DMA_64.jpg)
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_TX_DMA_64.jpg)
+
+
+log : when __WRITE__ tx data ( 128 bytes )
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_TX_DMA_128.jpg)
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_TX_DMA_128.jpg)
+
+
+
+log : when __READ__ tx data ( 8 bytes )
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_RX_only_8.jpg)
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_RX_only_8.jpg)
+
+
+log : when __READ__ tx data ( 8 bytes )
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_RX_only_8.jpg)
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_RX_only_8.jpg)
+
+
+log : when __READ__ tx data ( 16 bytes )
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_RX_only_16.jpg)
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_RX_only_16.jpg)
+
+
+log : when __READ__ tx data ( 24 bytes )
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_RX_only_24.jpg)
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_RX_only_24.jpg)
+
+
+log : when __READ__ tx data ( 32 bytes )
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_RX_only_32.jpg)
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_RX_only_32.jpg)
+
+
+log : when __READ__ tx data ( 48 bytes )
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_RX_only_48.jpg)
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_RX_only_48.jpg)
+
+
+log : when __READ__ tx data ( 64 bytes )
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_RX_only_64.jpg)
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_RX_only_64.jpg)
+
+
+log : when __READ__ tx data ( 128 bytes )
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_RX_only_128.jpg)
+
+![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_RX_only_128.jpg)
+
+

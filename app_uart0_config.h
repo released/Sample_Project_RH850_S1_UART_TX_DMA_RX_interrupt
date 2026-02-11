@@ -10,8 +10,6 @@
 /* UART0 common parameters (shared by RX-only and DMA). */
 #define APP_UART0_RX_BUF_SIZE       (384U)
 #define APP_UART0_TX_BUF_SIZE       (384U)
-#define APP_UART0_TIMER_HZ          (100000U) /* 10us tick */
-#define APP_UART0_IDLE_BITS         (30U)     /* 3 chars @ 8N1 */
 // #define APP_UART0_BAUD              (415000U)
 #define APP_UART0_BAUD              (115200U)
 
@@ -25,9 +23,6 @@
 /* UART0 DMA config. */
 #define APP_UART0_DMA_RX_RING_SIZE  (APP_UART0_RX_BUF_SIZE)
 #define APP_UART0_DMA_TX_BUF_SIZE   (APP_UART0_TX_BUF_SIZE)
-#define APP_UART0_DMA_TIMER_HZ      (APP_UART0_TIMER_HZ)
-#define APP_UART0_DMA_IDLE_BITS     (APP_UART0_IDLE_BITS)
-#define APP_UART0_DMA_BAUD          (APP_UART0_BAUD)
 
 /* DMA routing for this UART TX/RX channel. */
 #define APP_UART0_DMA_UNIT          (DRV_DMA_UNIT0)
@@ -63,13 +58,17 @@ typedef struct _uart_rx_manager_t
 	uint8_t g_uartrxerr;
     uint8_t g_packet_data;
     uint8_t g_rcv_data_finish;
+
+    uint32_t rx_err_total;
+    uint32_t rx_err_overrun;
+    uint32_t rx_irq_cnt;
+
+    uint32_t rx_last_err_type;   /* optional: snapshot for debug */    
 }UART_RX_MANAGER_T;
 
 /* DMA transfer parameters. */
 extern volatile uint8_t s_uart0_dma_rx_ring[APP_UART0_DMA_RX_RING_SIZE];
 extern volatile uint8_t s_uart0_dma_tx_buf[APP_UART0_DMA_TX_BUF_SIZE];
-
-extern volatile UART_RX_MANAGER_T UART0_RX_Manager;
 
 
 #endif /* APP_UART0_CONFIG_H */

@@ -8,7 +8,7 @@
 #include "retarget.h"
 
 #include "drv_dma.h"
-#include "drv_uart_dma.h"
+#include "app_gmsl_uart.h"
 
 /*_____ D E C L A R A T I O N S ____________________________________________*/
 
@@ -254,7 +254,8 @@ void loop(void)
     if (FLAG_PROJ_TIMER_PERIOD_SPECIFIC)
     {
         FLAG_PROJ_TIMER_PERIOD_SPECIFIC = 0U;
-        APP_UART0_DMA_Tx_process();
+
+        APP_GMSL_TxProcess();
         
         // R_Config_UART0_Send("1234",4);  // for test UART hardware
     }
@@ -307,19 +308,6 @@ void UARTx_Process(unsigned char rxbuf)
         switch(rxbuf)
         {
             case '1':
-                FLAG_PROJ_TRIG_1 = 1U;
-                break;
-            case '2':
-                FLAG_PROJ_TRIG_2 = 1U;
-                break;
-            case '3':
-                FLAG_PROJ_TRIG_3 = 1U;
-                break;
-            case '4':
-                FLAG_PROJ_TRIG_4 = 1U;
-                break;
-            case '5':
-                FLAG_PROJ_TRIG_5 = 1U;
                 break;
 
             case 'X':
@@ -390,7 +378,7 @@ void hardware_init(void)
         - RX > P10_09    
     */
     APP_UART0_PEG_Set();
-    // APP_UART0_DMA_SetCh0(); // uart tx dma register init
+    // APP_UART0_DMA_SetCh0(0U); // uart tx dma register init (len set at send)
     #if (APP_UART0_RX_MODE_DMA != 0U)
     APP_UART0_DMA_Init();
     APP_UART0_DMA_SetCh1();
