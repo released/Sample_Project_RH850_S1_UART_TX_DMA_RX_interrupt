@@ -223,7 +223,7 @@
         <Item generateEntity="true" generateFunction="false" id="ADCA0_INTADCA0I2_2" interruptHandlerFlag="false" interruptHandlerName="eiint32" oSManagementInterrupt="false" priority="15"/>
         <Item generateEntity="true" generateFunction="false" id="RLIN30_INTRLIN30" interruptHandlerFlag="false" interruptHandlerName="eiint33" oSManagementInterrupt="false" priority="15"/>
         <Item generateEntity="true" generateFunction="false" id="RLIN30_INTRLIN30UR0" interruptHandlerFlag="true" interruptHandlerName="r_Config_UART0_interrupt_send" oSManagementInterrupt="false" priority="15"/>
-        <Item generateEntity="true" generateFunction="false" id="RLIN30_INTRLIN30UR1" interruptHandlerFlag="true" interruptHandlerName="r_Config_UART0_interrupt_receive" oSManagementInterrupt="false" priority="15"/>
+        <Item generateEntity="true" generateFunction="false" id="RLIN30_INTRLIN30UR1" interruptHandlerFlag="true" interruptHandlerName="r_Config_UART0_interrupt_receive" oSManagementInterrupt="false" priority="0"/>
         <Item generateEntity="true" generateFunction="false" id="RLIN30_INTRLIN30UR2" interruptHandlerFlag="true" interruptHandlerName="r_Config_UART0_interrupt_error" oSManagementInterrupt="false" priority="15"/>
         <Item generateEntity="true" generateFunction="false" id="Port_INTP0" interruptHandlerFlag="false" interruptHandlerName="eiint37" oSManagementInterrupt="false" priority="15"/>
         <Item generateEntity="true" generateFunction="false" id="Port_INTP1" interruptHandlerFlag="false" interruptHandlerName="eiint38" oSManagementInterrupt="false" priority="15"/>
@@ -952,7 +952,7 @@
                     <item id="item_MSB" input="" vlaue="0"/>
                     <item id="item_LSB" input="" vlaue="0"/>
                 </option>
-                <option enabled="true" id="PSetting" selection="item_none">
+                <option enabled="true" id="PSetting" selection="item_even">
                     <item id="item_none" input="" vlaue="0"/>
                     <item id="item_zero" input="" vlaue="0"/>
                     <item id="item_odd" input="" vlaue="0"/>
@@ -1011,7 +1011,7 @@
                     <item id="Level14" input="" vlaue="0"/>
                     <item id="Level15" input="" vlaue="0"/>
                 </option>
-                <option enabled="true" id="IntCBRIPriority" selection="Level15">
+                <option enabled="true" id="IntCBRIPriority" selection="Level0">
                     <item id="Level0" input="" vlaue="0"/>
                     <item id="Level1" input="" vlaue="0"/>
                     <item id="Level2" input="" vlaue="0"/>

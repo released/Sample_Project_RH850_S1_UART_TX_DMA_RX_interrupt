@@ -18,6 +18,8 @@ update @ 2026/02/04
 		- baud rate 415000 : 60.24us
 
 	- UART0 : RLIN30 (TX > P10_10 , RX > P10_09)
+	
+		- set as 115200 / EVEN / 8 / 1 (emulate to communicate with GMSL)
 
         - TX DMA
 
@@ -380,25 +382,12 @@ log : when __READ__ tx data ( 8 bytes )
 ![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_RX_only_8.jpg)
 
 
-log : when __READ__ tx data ( 8 bytes )
-
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_RX_only_8.jpg)
-
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_RX_only_8.jpg)
-
 
 log : when __READ__ tx data ( 16 bytes )
 
 ![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_RX_only_16.jpg)
 
 ![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_RX_only_16.jpg)
-
-
-log : when __READ__ tx data ( 24 bytes )
-
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/log_RX_only_24.jpg)
-
-![image](https://github.com/released/Sample_Project_RH850_S1_UART_TX_DMA_RX_interrupt/blob/main/LA_RX_only_24.jpg)
 
 
 log : when __READ__ tx data ( 32 bytes )
