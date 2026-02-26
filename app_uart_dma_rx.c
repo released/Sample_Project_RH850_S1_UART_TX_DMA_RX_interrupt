@@ -310,6 +310,8 @@ void APP_UART0_DMA_Rx_process(void)
 {
     uint16_t len1;
     uint8_t expect;
+    uint16_t expected_len;
+    uint16_t data_len;
 
     if (APP_UART0_DMA_RxDoneFlagGet() != 0U)
     {
@@ -353,10 +355,25 @@ void APP_UART0_DMA_Rx_process(void)
                 }
                 else if (expect == (uint8_t)GMSL_RESP_DATA)
                 {
-                    APP_GMSL_SetRecvLen(len1);
-                    tiny_printf("[GMSL RX DMA] DATA len=%u\r\n", len1);
-                    dump_buffer8((uint8_t *)UART0_DMA_RX_Manager.g_rx_buffer, len1);
-                    tiny_printf("[GMSL RX DMA] ---- end read ----\r\n");
+                    expected_len = APP_GMSL_GetExpectedLen();
+                    if ((len1 >= expected_len) &&
+                        (len1 >= 1U) &&
+                        (UART0_DMA_RX_Manager.g_rx_buffer[0] == (uint8_t)GMSL_UART_ACK_BYTE))
+                    {
+                        data_len = (uint16_t)(len1 - 1U);
+                        APP_GMSL_SetRecvLen(data_len);
+                        tiny_printf("[GMSL RX DMA] DATA len=%u\r\n", data_len);
+                        if (data_len > 0U)
+                        {
+                            dump_buffer8((uint8_t *)&UART0_DMA_RX_Manager.g_rx_buffer[1], data_len);
+                        }
+                        tiny_printf("[GMSL RX DMA] ---- end read ----\r\n");
+                    }
+                    else
+                    {
+                        APP_GMSL_SetError(1U);
+                        tiny_printf("gmsl rx:ack invalid\r\n");
+                    }
                 }
 
                 APP_GMSL_ClearExpect();

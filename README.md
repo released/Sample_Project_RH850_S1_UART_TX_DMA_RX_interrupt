@@ -28,7 +28,7 @@ update @ 2026/02/04
 		
 ```c
 /* UART0 RX mode select: 1 = DMA RX, 0 = interrupt RX-only */
-#define APP_UART0_RX_MODE_DMA       (1U)
+#define APP_UART0_RX_MODE_DMA       (0U)
 ```		
 
 		- modify cstart.asm , to increase stack size
@@ -261,7 +261,7 @@ MCU send READ packet to GMSL
  * [2] REG_ADDR
  * [3] LEN         = N (1..255, 256 => 0x00)
  *
- * Response (GMSL -> MCU): DATA[0..N-1] only (no ACK).
+ * Response (GMSL -> MCU): ACK 0xC3 + DATA[0..N-1].
  */
 ```
 
@@ -278,13 +278,13 @@ flowchart TD
 
     E --> F{"RX wait (RX-only or RX-DMA)"}
     F -->|"WRITE"| G["Expect ACK (0xC3)"]
-    F -->|"READ"| H["Expect DATA length = LEN"]
+    F -->|"READ"| H["Expect ACK (0xC3) + DATA length = LEN"]
 
     G --> I{"ACK received?"}
     I -->|"Yes"| J["Log: ACK<br/>End write"]
     I -->|"No (timeout)"| K["Log: TIMEOUT<br/>End write"]
 
-    H --> L{"DATA received len == LEN?"}
+    H --> L{"ACK valid and DATA len == LEN?"}
     L -->|"Yes"| M["Log: DATA len<br/>End read"]
     L -->|"No (timeout)"| N["Log: TIMEOUT<br/>End read"]
 
@@ -304,7 +304,7 @@ flowchart TD
     C --> D["Store byte -> buffer<br/>update bufferPos"]
     D --> E{"Expect type"}
     E -->|"ACK"| F["Check first byte == 0xC3"]
-    E -->|"DATA"| G["if bufferPos >= expected_len"]
+    E -->|"DATA"| G["if bufferPos >= (expected_len + 1)"]
     F --> H["Done: set recv_len / ack_ok<br/>stop UART + stop timer"]
     G --> H
     D --> I["Reset idle timer every byte"]
@@ -318,7 +318,7 @@ flowchart TD
     N -->|"No"| P["wait_ticks++"]
     M --> Q{"Expect type"}
     Q -->|"ACK"| R["if write_pos >= 1"]
-    Q -->|"DATA"| S["if write_pos >= expected_len"]
+    Q -->|"DATA"| S["if write_pos >= (expected_len + 1)"]
     R --> T["Done: set bufferPos<br/>stop DMA + stop timer"]
     S --> T
     P --> U{"wait_ticks >= timeout?"}

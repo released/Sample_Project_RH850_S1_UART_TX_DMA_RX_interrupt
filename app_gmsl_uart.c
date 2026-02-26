@@ -119,7 +119,7 @@ uint16_t APP_GMSL_BuildWritePacket(uint8_t dev_addr,
  * [2] REG_ADDR
  * [3] LEN         = N (1..255, 256 => 0x00)
  *
- * Response (GMSL -> MCU): DATA[0..N-1] only (no ACK).
+ * Response (GMSL -> MCU): ACK(0xC3) + DATA[0..N-1].
  */
 uint16_t APP_GMSL_BuildReadPacket(uint8_t dev_addr,
                                  uint8_t reg_addr,
@@ -166,9 +166,19 @@ void APP_GMSL_ExpectAck(void)
 
 void APP_GMSL_ExpectData(uint16_t len)
 {
+    uint16_t total_len;
+
     if ((len == 0U) ||
         (len > (uint16_t)GMSL_UART_MAX_DATA_LEN) ||
-        (len > (uint16_t)APP_UART0_RX_BUF_SIZE))
+        (len >= (uint16_t)APP_UART0_RX_BUF_SIZE))
+    {
+        app_gmsl_rx_reset_ctx();
+        s_gmsl_rx_ctx.err = 1U;
+        return;
+    }
+
+    total_len = (uint16_t)(len + 1U); /* read response = ACK + DATA */
+    if (total_len > (uint16_t)APP_UART0_RX_BUF_SIZE)
     {
         app_gmsl_rx_reset_ctx();
         s_gmsl_rx_ctx.err = 1U;
@@ -176,7 +186,7 @@ void APP_GMSL_ExpectData(uint16_t len)
     }
 
     s_gmsl_rx_ctx.expect = GMSL_RESP_DATA;
-    s_gmsl_rx_ctx.expected_len = len;
+    s_gmsl_rx_ctx.expected_len = total_len;
     s_gmsl_rx_ctx.recv_len = 0U;
     s_gmsl_rx_ctx.ack_ok = 0U;
     s_gmsl_rx_ctx.err = 0U;
